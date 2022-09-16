@@ -36,3 +36,6 @@ spring:
       ddl-auto: create
 custom:
   genFileDirPath: /Users/imhope/Desktop/file
+logging:
+  level:
+    com.ll.exam.app10.app: debug
