@@ -21,11 +21,19 @@ import java.io.File;
 @SuperBuilder
 @ToString(callSuper = true)
 public class Member extends BaseEntity {
+
     @Column(unique = true)
     private String username;
+
     private String password;
+
     private String email;
+
     private String profileImg;
+
+    public Member(long id) {
+        super(id);
+    }
 
     public void removeProfileImgOnStorage() {
         if (profileImg == null || profileImg.trim().length() == 0) return;
