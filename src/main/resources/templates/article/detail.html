@@ -30,14 +30,8 @@
             내용 : [[${article.content}]]
         </div>
 
-        <div>
-            이미지 1 :
-            <img th:src="@{${article.extra.genFileMap.common\_\_inBody\_\_1.url}}">
-        </div>
-
-        <div>
-            이미지 2 :
-            <img th:src="@{${article.extra.genFileMap.common\_\_inBody\_\_2.url}}">
+        <div th:each="entry : ${article.extra.genFileMap}">
+            <img th:src="@{${entry.value.url}}">
         </div>
 
 
