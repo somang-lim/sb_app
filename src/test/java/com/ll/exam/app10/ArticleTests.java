@@ -55,9 +55,6 @@ public class ArticleTests {
     void t4() {
         List<Article> articles = articleService.search("hashTag", "자바");
 
-        System.out.println("=====================================");
-        System.out.println(articles);
-        System.out.println("=====================================");
         assertThat(articles.size()).isEqualTo(1);
     }
 
