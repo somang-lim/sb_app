@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
@@ -84,7 +85,11 @@ public class ArticleController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/{id}/modify")
     @ResponseBody // 임시
-    public String modify(@AuthenticationPrincipal MemberContext memberContext, Model model, @PathVariable Long id, @Valid ArticleForm articleForm, MultipartRequest multipartRequest) {
+    public String modify(@AuthenticationPrincipal MemberContext memberContext,
+                         Model model, @PathVariable Long id,
+                         @Valid ArticleForm articleForm,
+                         MultipartRequest multipartRequest,
+                         @RequestParam Map<String, String> params) {
         Article article = articleService.getForPrintArticleById(id);
 
         if (memberContext.memberIsNot(article.getAuthor())) {
@@ -93,6 +98,7 @@ public class ArticleController {
 
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 
+        genFileService.deleteFiles(article, params);
         RsData<Map<String, GenFile>> saveFilesRsData = genFileService.saveFiles(article, fileMap);
 
         articleService.modify(article, articleForm.getSubject(), articleForm.getContent());
