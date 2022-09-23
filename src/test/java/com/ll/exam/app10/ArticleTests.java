@@ -42,4 +42,23 @@ public class ArticleTests {
         assertThat(hashTags.size()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("1번 게시물의 해시태그를 수정하면, 기존 해시태그 중 몇개는 지워질 수 있다.")
+    void t3() {
+        String keywordContentsStr = "#자바 #개발";
+        Article article = articleService.getArticleById(1L);
+        hashTagService.applyHashTags(article, keywordContentsStr);
+    }
+
+    @Test
+    @DisplayName("해시태그 자바와 관련된 모든 게시물 조회")
+    void t4() {
+        List<Article> articles = articleService.search("hashTag", "자바");
+
+        System.out.println("=====================================");
+        System.out.println(articles);
+        System.out.println("=====================================");
+        assertThat(articles.size()).isEqualTo(1);
+    }
+
 }
