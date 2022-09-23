@@ -1,4 +1,4 @@
-package com.ll.exam.app10.app.article.controller.input.ArticleForm;
+package com.ll.exam.app10.app.article.controller.input;
 
 import lombok.Getter;
 import lombok.Setter;

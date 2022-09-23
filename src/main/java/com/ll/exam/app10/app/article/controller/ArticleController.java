@@ -1,6 +1,6 @@
 package com.ll.exam.app10.app.article.controller;
 
-import com.ll.exam.app10.app.article.controller.input.ArticleForm.ArticleForm;
+import com.ll.exam.app10.app.article.controller.input.ArticleForm;
 import com.ll.exam.app10.app.article.entity.Article;
 import com.ll.exam.app10.app.article.service.ArticleService;
 import com.ll.exam.app10.app.base.dto.RsData.RsData;
