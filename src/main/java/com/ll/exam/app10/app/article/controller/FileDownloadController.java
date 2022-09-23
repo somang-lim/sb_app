@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 
 @Controller
-@RequestMapping("/gen/{id}")
+@RequestMapping("/download")
 @RequiredArgsConstructor
 public class FileDownloadController {
     private final GenFileService genFileService;
