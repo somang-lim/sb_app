@@ -42,9 +42,7 @@ public class ArticleController {
     public String showList(Model model) {
         List<Article> articles = articleService.getArticles();
 
-        for (Article article : articles) {
-            articleService.loadForPrintData(article);
-        }
+        articleService.loadForPrintData(articles);
 
         model.addAttribute("articles", articles);
 
