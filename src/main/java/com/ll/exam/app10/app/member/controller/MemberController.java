@@ -4,6 +4,7 @@ import com.ll.exam.app10.app.member.entity.Member;
 import com.ll.exam.app10.app.member.service.MemberService;
 import com.ll.exam.app10.app.security.dto.MemberContext;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
@@ -41,7 +43,14 @@ public class MemberController {
 
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
-    public String showLogin() {
+    public String showLogin(HttpServletRequest request) {
+        String uri = request.getHeader("Referer");
+        log.debug("uri : " + uri);
+
+        if (uri != null && !uri.contains("/member/login")) {
+            request.getSession().setAttribute("prevPage", uri);
+        }
+
         return "member/login";
     }
 

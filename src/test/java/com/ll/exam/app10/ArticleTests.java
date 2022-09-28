@@ -35,7 +35,7 @@ public class ArticleTests {
 
     @Test
     @DisplayName("1번 게시물에는 키워드가 2개 존재한다.")
-    void t2() {
+    void t2 () {
         Article article = articleService.getArticleById(1L);
         List<HashTag> hashTags = hashTagService.getHashTags(article);
 
